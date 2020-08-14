@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import storage from './storage'
+// import storage from './storage'
 
 export default {
   name: 'App',
@@ -14,12 +14,16 @@ export default {
   },
   data() {
     return {
-      
+      res:{}
     };
   },
   mounted(){
     // storage.setItem('abc',{a:1},'user');
-    storage.clear('a','user');
+    // storage.clear('a','user');
+    this.axios.get('/user/login').then((res)=>{
+      
+      this.res = res;
+    })
   }
 }
 </script>
