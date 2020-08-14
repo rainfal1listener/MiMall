@@ -1,6 +1,6 @@
 <template>
   <div>
-    alipay
+    order-header
   </div>
   
 </template>
@@ -9,7 +9,7 @@
 
 
 export default {
-  name:'alipay',
+  name:'order-header',
 
 }
 </script>
