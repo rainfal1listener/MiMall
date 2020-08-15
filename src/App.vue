@@ -14,27 +14,21 @@ export default {
   },
   data() {
     return {
-      res:{}
+      // res:{}
     };
   },
   mounted(){
     // storage.setItem('abc',{a:1},'user');
     // storage.clear('a','user');
-    this.axios.get('/user/login').then((res)=>{
+    // this.axios.get('/user/login').then((res)=>{
       
-      this.res = res;
-    })
+    //   this.res = res;
+    // })
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+@import './assets/scss/reset.scss';
+@import '/assets/scss/base.scss';
 </style>
