@@ -54,8 +54,14 @@
         </swiper>
       </div>
       <div class="ads-box">
+        <a :href="'/#/product/'+item.id" v-for="(item,i) in adsList" :key="i">
+          <img :src="item.img" alt="">
+        </a>
       </div>
       <div class="banner">
+        <a href="/#/product/30">
+          <img src="/imgs/banner-1.png" alt="">
+        </a>
       </div>
     </div>
     <div class="product-box">
@@ -93,7 +99,7 @@
             prevEl: '.swiper-button-prev',
           }
         },
-        slideList:[
+        slideList:[//nav-header小米手机子菜单手机产品数据
           {
             id:'42',
             img:'/imgs/slider/slide-1.jpg'
@@ -115,7 +121,7 @@
             img:'/imgs/slider/slide-1.jpg'
           }
         ],
-        menuList:[
+        menuList:[//商品子菜单产品二维数组
           [
             {
               id:30,
@@ -137,7 +143,7 @@
           ],
           [0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]
         ],
-        adsList:[
+        adsList:[//广告图片
           {
             id:33,
             img:'/imgs/ads/ads-1.png'
@@ -268,6 +274,18 @@
           height: 100%;
         }
       }
+    }
+    .ads-box{
+      @include flex();
+      margin-top: 14px;
+      margin-bottom: 31px;
+      a{
+        width: 296px;
+        height: 167px;
+      }
+    }
+    .banner{
+      margin-bottom: 50px;
     }
   }
 </style>
