@@ -4,7 +4,7 @@
     <div class="mask"></div>
     <div class="modal-dialog">
       <div class="modal-header">
-        <span>标题</span>
+        <span>{{title}}</span>
         <a href="javasript:;" class="icon-close"  @click="$emit('close')"></a>
       </div>
       <div class="modal-body">
@@ -12,8 +12,8 @@
         <slot name="body"></slot>
       </div>
       <div class="modal-footer">
-        <a href="javasript:;" class="btn" v-if="btnType==1"  @click="$emit('submit')">确定</a>
-        <a href="javasript:;" class="btn-defaut" v-if="btnType==2" >取消</a>
+        <a href="javasript:;" class="btn" v-if="btnType==1"  @click="$emit('submit')">{{sureText}}</a>
+      <a href="javasript:;" class="btn-defaut" v-if="btnType==2" >{{cancelText}}</a>
         <!-- <div class="btn-group" v-if="btnType==3">
           <a href="javasript:;" class="btn" :click="$emit('summit')">确定</a>
           <a href="javasript:;" class="btn-defaut" >取消</a>

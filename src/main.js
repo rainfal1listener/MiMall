@@ -2,6 +2,7 @@ import Vue from 'vue'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueLazyload from 'vue-lazyload'
 import App from './App.vue'
 // import env from './env'
 
@@ -31,6 +32,12 @@ axios.interceptors.response.use(function(response){
 });
 
 Vue.use(VueAxios,axios);
+Vue.use(VueLazyload, {
+  // preLoad: 1.3,
+  // error: 'dist/error.png',
+  loading: '/imgs/loading-svg/loading-bars.svg',
+  // attempt: 1
+})
 Vue.config.productionTip = true//开发环境提示
 
 new Vue({
