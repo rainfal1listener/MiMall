@@ -18,12 +18,26 @@ export default {
     };
   },
   mounted(){
+    this.getUser();
+    this.getCartCount();
     // storage.setItem('abc',{a:1},'user');
     // storage.clear('a','user');
     // this.axios.get('/user/login').then((res)=>{
       
     //   this.res = res;
     // })
+  },
+  methods:{
+    getUser(){
+      this.axios.get('/user').then(()=>{
+        //to-do 保存到vuex里面
+      })
+    },
+    getCartCount(){
+      this.axios.get('/carts/products/sum').then(()=>{
+        //to-do 保存到vuex里面
+      })
+    }
   }
 }
 </script>
