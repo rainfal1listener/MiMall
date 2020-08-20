@@ -41,6 +41,7 @@ export default {
 @import './../assets/scss/config.scss';
 @import './../assets/scss/mixin.scss';
   .nav-bar{
+    z-index:10;
     height:70px;
     line-height: 70px;
     border-top:1px solid $colorH;

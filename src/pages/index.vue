@@ -83,10 +83,11 @@
                 <div class="item-img">
                   <img v-lazy="item.mainImage" alt />
                 </div>
-                <div class="ivtem-info">
+                <div class="item-info">
                   <h3>{{item.name}}</h3>
                   <p>{{item.subtitle}}</p>
                   <p class="price" @click="addCart(item.id)">{{item.price}}元</p>
+                  
                 </div>
               </div>
             </div>
@@ -239,19 +240,18 @@ export default {
           this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)];
         });
     },
-    addCart() {
-      this.showModal = true;
-      window.console.log("openModal");
-      return;
-      // this.axios
-      //   .post("/carts", {
-      //     productId: id,
-      //     selected: true,
-      //   })
-      //   .then((res) => {
-      //     this.showModal = false;
-      //     this.$store.dispatch("saveCartCount", res.cartTotalQuantity);
-      //   });
+    addCart(id) {
+      this.axios
+        .post("/carts", {
+          productId: id,
+          selected: true,
+        })
+        .then((res) => {
+          this.showModal = true;
+          this.$store.dispatch("saveCartCount", res.cartTotalQuantity);
+        }).catch(()=>{
+          this.showModal = true;
+        });
     },
     goToCart() {
       this.$router.push("/cart");
@@ -269,6 +269,10 @@ export default {
 <style lang="scss">
 @import "./../assets/scss/config.scss";
 @import "./../assets/scss/mixin.scss";
+ .icon-cart{
+          @include bgImg(16px,12px,'/imgs/icon-cart-checked.png');
+          margin-right: 4px;
+        }
 .index {
   .swiper-box {
     .nav-menu {
