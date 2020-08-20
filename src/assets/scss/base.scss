@@ -1,5 +1,9 @@
+/*
+*存放公共样式
+*/
+@import './mixin.scss';
 .container{
-  width:1226px;
+  width:1226px;//防止超出
   margin-right:auto;
   margin-left: auto;
   position:relative;
@@ -15,6 +19,7 @@ input{
   box-sizing: border-box;
   font-size: 14px;
 }
+//浮动方法
 .fl{
   float:left;
 }
@@ -27,4 +32,29 @@ input{
 }
 .clearfix:after{
   clear:both;
+}
+//动态logo主页跳转按钮样式
+.header-logo{
+  display: inline-block;
+  width: 55px;
+  height:55px;
+  background-color: #FF6600;
+  a{
+    display: inline-block;
+    width: 110px;
+    height:55px;
+    &::before{
+      content:'';//占位,::before和::after必须配合content属性来使用
+      @include bgImg(55px,55px,'/imgs/mi-logo.png','55px');
+      transition:margin .2s
+    }
+    &::after{
+      content:'';
+      @include bgImg(55px,55px,'/imgs/mi-home.png','55px');
+    }
+    &:hover:before{
+      margin-left: -55px;
+      transition:margin .2s
+    }
+  }
 }

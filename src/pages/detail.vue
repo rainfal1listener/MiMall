@@ -1,406 +1,249 @@
 <template>
-  <div class="index">
-    <div class="container">
-      <div class="swiper-box">
-        <div class="nav-menu">
-          <ul class="menu-wrap">
-            <li class="menu-item">
-              <a href="javascript:;">手机 电话卡</a>
-              <div class="children">
-                <ul v-for="(item,i) in menuList" v-bind:key="i">
-                  <li v-for="(sub,j) in item" v-bind:key="j">
-                    <a v-bind:href="sub?'/#/product/'+sub.id:''">
-                      <img v-bind:src="sub?sub.img:'/imgs/item-box-1.png'" alt="">
-                      {{sub?sub.name:'小米9'}}
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li class="menu-item">
-              <a href="javascript:;">电视 盒子</a>
-            </li>
-            <li class="menu-item">
-              <a href="javascript:;">笔记本 平板</a>
-            </li>
-            <li class="menu-item">
-              <a href="javascript:;">家电 插线板</a>
-            </li>
-            <li class="menu-item">
-              <a href="javascript:;">出行 穿戴</a>
-            </li>
-            <li class="menu-item">
-              <a href="javascript:;">智能 路由器</a>
-            </li>
-            <li class="menu-item">
-              <a href="javascript:;">电源 配件</a>
-            </li>
-            <li class="menu-item">
-              <a href="javascript:;">生活 箱包</a>
-            </li>
-          </ul>
+  <div class="detail">
+    <product-param :title="product.name"></product-param>
+    <div class="wrapper">
+      <div class="container clearfix">
+        <div class="swiper">
+          <swiper :options="swiperOption">
+              <swiper-slide><img src="/imgs/detail/phone-1.jpg" alt=""></swiper-slide>
+              <swiper-slide><img src="/imgs/detail/phone-2.jpg" alt=""></swiper-slide>
+              <swiper-slide><img src="/imgs/detail/phone-3.jpg" alt=""></swiper-slide>
+              <swiper-slide><img src="/imgs/detail/phone-4.jpg" alt=""></swiper-slide>
+              <!-- Optional controls -->
+              <div class="swiper-pagination"  slot="pagination"></div>
+          </swiper>
         </div>
-        <swiper v-bind:options="swiperOption">
-          <swiper-slide v-for="(item,index) in slideList" v-bind:key="index">
-            <a v-bind:href="'/#/product/'+item.id"><img v-bind:src="item.img"></a>
-          </swiper-slide>
-          <!-- Optional controls -->
-          <div class="swiper-pagination"  slot="pagination"></div>
-          <div class="swiper-button-prev" slot="button-prev"></div>
-          <div class="swiper-button-next" slot="button-next"></div>
-        </swiper>
-      </div>
-      <div class="ads-box">
-        <a v-bind:href="'/#/product/'+item.id" v-for="(item,index) in adsList" v-bind:key="index">
-          <img v-lazy="item.img" alt="">
-        </a>
-      </div>
-      <div class="banner">
-        <a href="/#/product/30">
-          <img v-lazy="'/imgs/banner-1.png'" alt="">
-        </a>
-      </div>
-    </div>
-    <div class="product-box">
-      <div class="container">
-        <h2>手机</h2>
-        <div class="wrapper">
-          <div class="banner-left">
-            <a href="/#/product/35"><img v-lazy="'/imgs/mix-alpha.jpg'" alt=""></a>
+        <div class="content">
+          <h2 class="item-title">{{product.name}}</h2>
+          <p class="item-info">相机全新升级 / 960帧超慢动作 / 手持超级夜景 / 全球首款双频GPS / 骁龙845处理器 / 红<br/>外人脸解锁 / AI变焦双摄 / 三星 AMOLED 屏</p>
+          <div class="delivery">小米自营</div>
+          <div class="item-price">{{product.price}}元<span class="del">1999元</span></div>
+          <div class="line"></div>
+          <div class="item-addr">
+            <i class="icon-loc"></i>
+            <div class="addr">北京 北京市 朝阳区 安定门街道</div>
+            <div class="stock">有现货</div>
           </div>
-          <div class="list-box">
-            <div class="list" v-for="(arr,i) in phoneList" v-bind:key="i">
-              <div class="item" v-for="(item,j) in arr" v-bind:key="j">
-                <span v-bind:class="{'new-pro':j%2==0}">新品</span>
-                <div class="item-img">
-                  <img v-lazy="item.mainImage" alt="">
-                </div>
-                <div class="item-info">
-                  <h3>{{item.name}}</h3>
-                  <p>{{item.subtitle}}</p>
-                  <p class="price" @click="addCart(item.id)">{{item.price}}元</p>
-                </div>
-              </div>
+          <div class="item-version clearfix">
+            <h2>选择版本</h2>
+            <div class="phone fl" :class="{'checked':version==1}" @click="version=1">6GB+64GB 全网通</div>
+            <div class="phone fr" :class="{'checked':version==2}" @click="version=2">4GB+64GB 移动4G</div>
+          </div>
+          <div class="item-color">
+            <h2>选择颜色</h2>
+            <div class="phone checked">
+              <span class="color"></span>
+              深空灰
             </div>
           </div>
+          <div class="item-total">
+            <div class="phone-info clearfix">
+              <div class="fl">{{product.name}} {{version==1?'6GB+64GB 全网通':'4GB+64GB 移动4G'}} 深灰色</div>
+              <div class="fr">{{product.price}}元</div>
+            </div>
+            <div class="phone-total">总计：{{product.price}}元</div>
+          </div>
+          <div class="btn-group">
+            <a href="javascript:;" class="btn btn-huge fl" @click="addCart">加入购物车</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="price-info">
+      <div class="container">
+        <h2>价格说明</h2>
+        <div class="desc">
+          <img src="/imgs/detail/item-price.jpeg" alt="">
         </div>
       </div>
     </div>
     <service-bar></service-bar>
-    <modal 
-      title="提示" 
-      sureText="查看购物车" 
-      btnType="1" 
-      modalType="middle" 
-      v-bind:showModal="showModal"
-      v-on:submit="goToCart"
-      v-on:cancel="showModal=false"
-      >
-      <template v-slot:body>
-        <p>商品添加成功！</p>
-      </template>
-    </modal>
   </div>
 </template>
 <script>
-  import ServiceBar from './../components/ServiceBar'
-  import Modal from './../components/Modal'
-  import { swiper, swiperSlide } from 'vue-awesome-swiper'
-  import 'swiper/dist/css/swiper.css'
-  export default{
-    name:'index',
-    components:{
-      swiper,
-      swiperSlide,
-      ServiceBar,
-      Modal
-    },
-    data(){
-      return {
-        swiperOption:{
-          autoplay:true,
-          loop:true,
-          effect:'cube',
-          cubeEffect: {
-            shadowOffset: 100,
-            shadowScale: 0.6
-          },
-          pagination: {
-            el: '.swiper-pagination',
-            clickable:true
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          }
-        },
-        slideList:[
-          {
-            id:'42',
-            img:'/imgs/slider/slide-1.jpg'
-          },
-          {
-            id:'45',
-            img:'/imgs/slider/slide-2.jpg'
-          },
-          {
-            id:'46',
-            img:'/imgs/slider/slide-3.jpg'
-          },
-          {
-            id:'',
-            img:'/imgs/slider/slide-4.jpg'
-          },
-          {
-            id:'',
-            img:'/imgs/slider/slide-1.jpg'
-          }
-        ],
-        menuList:[
-          [
-            {
-              id:30,
-              img:'/imgs/item-box-1.png',
-              name:'小米CC9',
-            },{
-              id:31,
-              img:'/imgs/item-box-2.png',
-              name:'小米8青春版',
-            },{
-              id:32,
-              img:'/imgs/item-box-3.jpg',
-              name:'Redmi K20 Pro',
-            },{
-              id:33,
-              img:'/imgs/item-box-4.jpg',
-              name:'移动4G专区',
-            }
-          ],
-          [0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]
-        ],
-        adsList:[
-          {
-            id:33,
-            img:'/imgs/ads/ads-1.png'
-          },{
-            id:48,
-            img:'/imgs/ads/ads-2.jpg'
-          },{
-            id:45,
-            img:'/imgs/ads/ads-3.png'
-          },{
-            id:47,
-            img:'/imgs/ads/ads-4.jpg'
-          }
-        ],
-        phoneList:[],
-        showModal:false
-      }
-    },
-    mounted(){
-      this.init();
-    },
-    methods:{
-      init(){
-        this.axios.get('/products',{
-          params:{
-            categoryId:100012,
-            pageSize:14
-          }
-        }).then((res)=>{
-          res.list = res.list.slice(6,14);
-          this.phoneList = [res.list.slice(0,4),res.list.slice(4,8)];
-        })
-      },
-      addCart(id){
-        this.axios.post('/carts',{
-          productId:id,
-          selected: true
-        }).then((res)=>{
-          this.showModal = true;
-          this.$store.dispatch('saveCartCount',res.cartTotalQuantity);
-        });
-      },
-      goToCart(){
-        this.$router.push('/cart');
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import ProductParam from './../components/ProductParam'
+import ServiceBar from './../components/ServiceBar';
+export default{
+  name:'detail',
+  data(){
+    return {
+      id:this.$route.params.id,//获取商品ID
+      err:'',
+      version:1,//商品版本切换
+      product:{},//商品信息
+      swiperOption:{
+        autoplay:true,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable :true,
+        }
       }
     }
+  },
+  components:{
+    swiper,
+    swiperSlide,
+    ProductParam,
+    ServiceBar
+  },
+  mounted(){
+    this.getProductInfo();
+  },
+  methods:{
+    getProductInfo(){
+      this.axios.get(`/products/${this.id}`).then((res)=>{
+        this.product = res;
+      })
+    },
+    addCart(){
+      this.axios.post('/carts',{
+        productId:this.id,
+        selected: true
+      }).then((res={cartProductVoList:0})=>{
+        this.$store.dispatch('saveCartCount',res.cartTotalQuantity);
+        // this.$router.push('/cart');
+      });
+    }
   }
+}
 </script>
 <style lang="scss">
   @import './../assets/scss/config.scss';
   @import './../assets/scss/mixin.scss';
-  .index{
-    .swiper-box{
-      .nav-menu{
-        position:absolute;
-        width:264px;
-        height:451px;
-        z-index:9;
-        padding:26px 0;
-        background-color:#55585a7a;
-        box-sizing:border-box;
-        .menu-wrap{
-          .menu-item{
-            height:50px;
-            line-height:50px;
-            a{
-              position:relative;
-              display:block;
-              font-size:16px;
-              color:#ffffff;
-              padding-left:30px;
-              &:after{
-                position:absolute;
-                right:30px;
-                top:17.5px;
-                content:' ';
-                @include bgImg(10px,15px,'/imgs/icon-arrow.png');
-              }
-            }
-            &:hover{
-              background-color:$colorA;
-              .children{
-                display:block;
-              }
-            }
-            .children{
-              display:none;
-              width:962px;
-              height:451px;
-              background-color:$colorG;
-              position:absolute;
-              top:0;
-              left:264px;
-              border:1px solid $colorH;
-              ul{
-                display:flex;
-                justify-content:space-between;
-                height:75px;
-                li{
-                  height:75px;
-                  line-height:75px;
-                  flex:1;
-                  padding-left:23px;
-                }
-                a{
-                  color:$colorB;
-                  font-size:14px;
-                }
-                img{
-                  width:42px;
-                  height:35px;
-                  vertical-align:middle;
-                  margin-right:15px;
-                }
-              }
-            }
-          }
-        }
-      }
-      .swiper-container {
-        height: 451px;
-        .swiper-button-prev{
-          left:274px;
-        }
+  @import './../assets/scss/base.scss';
+  .detail{
+    .wrapper{
+      .swiper{
+        float:left;
+        width:642px;
+        height:617px;
+        margin-top:5px;
         img{
           width:100%;
           height:100%;
         }
-      }  
-    }
-    .ads-box{
-      @include flex();
-      margin-top:14px;
-      margin-bottom:31px;
-      a{
-        width:296px;
-        height:167px;
+      }
+      .content{
+        float:right;
+        width:584px;
+        height:870px;
+        .item-title{
+          font-size:28px;
+          padding-top:30px;
+          padding-bottom:16px;
+          height: 26px;
+        }
+        .item-info{
+          font-size:14px;
+          height: 36px;
+        }
+        .delivery{
+          font-size:16px;
+          color:#FF6700;
+          margin-top:26px;
+          margin-bottom:14px;
+          height: 15px;
+        }
+        .item-price{
+          font-size:20px;
+          color:#FF6700;
+          height: 19px;
+          .del{
+            font-size:16px;
+            color:#999999;
+            margin-left:10px;
+            text-decoration:line-through;
+          }
+        }
+        .line{
+          height:0;
+          margin-top:25px;
+          margin-bottom:28px;
+          border-top:1px solid #E5E5E5;
+        }
+        .item-addr{
+          height:108px;
+          background-color:#FAFAFA;
+          border:1px solid #E5E5E5;
+          box-sizing:border-box;
+          padding-top:31px;
+          padding-left:64px;
+          font-size:14px;
+          line-height:14px;
+          position:relative;
+          .icon-loc{
+            position: absolute;
+            top: 27px;
+            left: 34px;
+            @include bgImg(20px,20px,'/imgs/detail/icon-loc.png');
+          }
+          .addr{
+            color:#666666;
+          }
+          .stock{
+            margin-top:15px;
+            color:#FF6700;
+          }
+        }
+        .item-version,.item-color{
+          margin-top:30px;
+          h2{
+            font-size:18px;
+            margin-bottom:20px;
+          }
+        }
+        .item-version,.item-color{
+          .phone{
+            width:287px;
+            height:50px;
+            line-height:50px;
+            font-size:16px;
+            color:#333333;
+            border:1px solid #E5E5E5;
+            box-sizing: border-box;
+            text-align:center;
+            cursor:pointer;
+            span{
+              color:#666666;
+              margin-left:15px;
+            }
+            .color{
+              display:inline-block;
+              width:14px;
+              height:14px;
+              background-color:#666666;
+            }
+            &.checked{
+              border:1px solid #FF6600;
+              color:#FF6600;
+            }
+          }
+        }
+        .item-total{
+          height: 108px;
+          background: #FAFAFA;
+          padding: 24px 33px 29px 30px;
+          font-size: 14px;
+          margin-top:50px;
+          margin-bottom:30px;
+          box-sizing: border-box;
+          .phone-total{
+            font-size: 24px;
+            color: #FF6600;
+            margin-top: 18px;
+          }
+        }
       }
     }
-    .banner{
-      margin-bottom:50px;
-    }
-    .product-box{
-      background-color:$colorJ;
-      padding:30px 0 50px;
+    .price-info{
+      background-color:#F3F3F3;
+      height:340px;
       h2{
-        font-size:$fontF;
-        height:21px;
-        line-height:21px;
-        color:$colorB;
-        margin-bottom:20px;
-      }
-      .wrapper{
-        display:flex;
-        .banner-left{
-          margin-right:16px;
-          img{
-            width:224px;
-            height:619px;
-          }
-        }
-        .list-box{
-          .list{
-            @include flex();
-            width:986px;
-            margin-bottom:14px;
-            &:last-child{
-              margin-bottom:0;
-            }
-            .item{
-              width:236px;
-              height:302px;
-              background-color:$colorG;
-              text-align:center;
-              span{
-                display:inline-block;
-                width:67px;
-                height:24px;
-                font-size:14px;
-                line-height:24px;
-                color:$colorG;
-                &.new-pro{
-                  background-color:#7ECF68;
-                }
-                &.kill-pro{
-                  background-color:#E82626;
-                }
-              }
-              .item-img{
-                img{
-                  width:100%;
-                  height:195px;
-                }
-              }
-              .item-info{
-                h3{
-                  font-size:$fontJ;
-                  color:$colorB;
-                  line-height:$fontJ;
-                  font-weight:bold;
-                }
-                p{
-                  color:$colorD;
-                  line-height:13px;
-                  margin:6px auto 13px;
-                }
-                .price{
-                  color:#F20A0A;
-                  font-size:$fontJ;
-                  font-weight:bold;
-                  cursor:pointer;
-                  &:after{
-                    @include bgImg(22px,22px,'/imgs/icon-cart-hover.png');
-                    content:' ';
-                    margin-left:5px;
-                    vertical-align: middle;
-                  }
-                }
-              }
-            }
-          }
-        }
+        font-size:24px;
+        color:#333333;
+        padding-top:38px;
+        margin-bottom:30px;
       }
     }
   }

@@ -206,30 +206,7 @@ export default {
         height: 112px;
         @include flex();
         position: relative;
-        .header-logo{
-          display: inline-block;
-          width: 55px;
-          height:55px;
-          background-color: #FF6600;
-          a{
-            display: inline-block;
-            width: 110px;
-            height:55px;
-            &::before{
-              content:'';//占位,::before和::after必须配合content属性来使用
-              @include bgImg(55px,55px,'/imgs/mi-logo.png','55px');
-              transition:margin .2s
-            }
-            &::after{
-              content:'';
-              @include bgImg(55px,55px,'/imgs/mi-home.png','55px');
-            }
-            &:hover:before{
-              margin-left: -55px;
-              transition:margin .2s
-            }
-          }
-        }
+
         .header-menu{
           display: inline-block;
           width: 643px;
