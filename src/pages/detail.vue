@@ -102,6 +102,7 @@ export default{
         selected: true
       }).then((res={cartProductVoList:0})=>{
         this.$store.dispatch('saveCartCount',res.cartTotalQuantity);
+        window.alert('添加购物车成功！');
         // this.$router.push('/cart');
       });
     }

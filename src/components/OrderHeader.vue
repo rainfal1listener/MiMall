@@ -8,7 +8,7 @@
         <h2>我的购物车<span>温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</span></h2>
       </div>
       <div class="username">
-        <a href="javascript:;">Jack</a>
+        <a href="javascript:;">{{username}}</a>
       </div>
     </div>
   </div>
@@ -16,11 +16,15 @@
 </template>
 
 <script>
-
-
+import {mapState} from 'vuex';
 export default {
   name:'order-header',
-
+  props:{
+    title:String
+  },
+  computed:{
+    ...mapState(['username'])
+  }
 }
 </script>
 
