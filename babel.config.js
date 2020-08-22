@@ -1,6 +1,6 @@
 module.exports = {
   "presets": [
-    '@vue/cli-plugin-babel/preset'
+    '@vue/cli-plugin-babel/preset'//语法解码规则
   ],
   "plugins": [
     [
