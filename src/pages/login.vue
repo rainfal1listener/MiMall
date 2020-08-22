@@ -54,11 +54,11 @@ export default {
         username,
         password
       }).then((res)=>{
-        this.$router.push('/index')
-        this.$cookie.set('userId',res.id,{expires:'1M'});
+        //this.$router.push('/index')
+        this.$cookie.set('userId',res.id,{expires:'Session'});
         //this.$store.dispatch('saveUserName',res.username);
         this.saveUserName(res.username);
-        this.$router.push({
+        this.$router.push({//给路由添加from参数，用于判断index是否由login跳转而来
           name:'index',
           params:{
             from:'login'
