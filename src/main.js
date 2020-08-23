@@ -35,7 +35,6 @@ axios.interceptors.response.use(function(response){
     }
   }else{
     this.$message.warning(res.msg);
-    // Message.warning(res.meg);
     return Promise.reject(res);
   }
 });
