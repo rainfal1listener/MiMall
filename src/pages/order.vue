@@ -1,10 +1,10 @@
 <template>
   <div>
-    <order-header v-bind:title="title">
+    <!-- <order-header v-bind:title="title">
       <template v-slot:tip>
         <span>{{tip}}</span>
       </template>
-    </order-header>
+    </order-header> -->
       <router-view></router-view>
       <service-bar></service-bar>
     <nav-footer></nav-footer>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import OrderHeader from './../components/OrderHeader'
+// import OrderHeader from './../components/OrderHeader'
 import ServiceBar from './../components/ServiceBar'
 import NavFooter from './../components/NavFooter'
 export default {
@@ -25,7 +25,7 @@ export default {
     }
   },
   components:{
-    OrderHeader,
+    // OrderHeader,
     NavFooter,
     ServiceBar
   },
@@ -38,6 +38,9 @@ export default {
       this.title = '订单列表';
       this.tip = '请谨慎防钓鱼链接或诈骗电话，了解更多';
     }else if(path == '/order/pay'){
+      this.title = '订单支付';
+      this.tip = '请谨慎防钓鱼链接或诈骗电话，了解更多';
+    }else{
       this.title = '订单支付';
       this.tip = '请谨慎防钓鱼链接或诈骗电话，了解更多';
     }

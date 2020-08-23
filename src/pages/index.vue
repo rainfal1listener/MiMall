@@ -247,10 +247,10 @@ export default {
           selected: true,
         })
         .then((res) => {
-          this.showModal = true;
+           this.$message.success('已添加商品到购物车');
           this.$store.dispatch("saveCartCount", res.cartTotalQuantity);
         }).catch(()=>{
-          this.showModal = true;
+          // this.showModal = true;
         });
     },
     goToCart() {
