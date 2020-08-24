@@ -19,7 +19,7 @@ export default new Router({
         }, {
           path: '/product/:id',
           name: 'product',
-          component: () => import('./pages/product.vue')//按需加载
+          component: () => import('./pages/product.vue')
         }, {
           path: '/detail/:id',
           name: 'detail',
@@ -50,7 +50,7 @@ export default new Router({
         {
           path: 'confirm',
           name: 'order-confirm',
-          component: () => import('./pages/orderConfirm.vue')
+          component: () => import('./pages/orderconfirm.vue')
         },
         {
           path: 'pay',
